@@ -17,6 +17,8 @@ CH3  |  40|  P29|  21
 * 基于wiringPi的控制程序
 * 基于python的web页应用程序
 * 通过php调用shell脚本控制继电器的程序
+* 制作可编程的时间继电器
+
 
 为此我们需要在raspbian系统上搭建相应的开发环境，才能进行应用程序的开发。
 
@@ -34,8 +36,6 @@ http://mirrors.aliyun.com/raspbian/raspbian/
 
 sudo apt-get update
 ```
-改成如下：
-![](./change_source.png)
 
 
 ### bcm2835库的安装
@@ -77,19 +77,32 @@ sudo pip install RPi.GPIO
 
 ### 下载解压软件包
 
+从github下载代码库：
 
 ```
-sudo apt-get install p7zip
+cd /home/pi
 
-wget 软件包网址
+sudo git clone https://github.com/rcdrones/rpi_isolated_relay_hat.git
 
-7zr x RPi_Relay_Board.7z -r -o./RPi_Relay_Board
+sudo chmod 777 -R rpi_isolated_relay_hat
 
-sudo chmod 777 -R RPi_Relay_Board
-
-cd RPi_Relay_Board
+cd rpi_isolated_relay_hat
 
 ```
+
+或者从网盘下载本资料包（rpi_isolated_relay_hat.zip）,放到/home/pi目录下：
+
+```
+cd /home/pi
+
+unzip rpi_isolated_relay_hat.zip
+
+sudo chmod 777 -R rpi_isolated_relay_hat
+
+cd rpi_isolated_relay_hat
+
+```
+
 
 
 ## 使用介绍
@@ -148,7 +161,7 @@ sudo python Relay_Module.py
 预期结果：可以看到 3 个 LED 依次点亮，继电器依次在常开触点和常闭触点之间来回切换。同时终端会显示目前继电器在哪个触点。
 
 
-### 网页控制
+### 网页控制(基于python-bottle库)
 
 本例程的网页控制是基于 python Web 框架来控制继电器的。
 进入 Linux 终端，在终端执行以下命令：
@@ -163,4 +176,32 @@ sudo python main.py
 ```
 
 在谷歌浏览器（其他浏览器可能不兼容）地址栏内输入树莓派 ip 地址，端口号 8000
+
+
+### 制作时间继电器（基于cron和shell脚本）
+
+linux的crontab是用来定时运行某个程序的。有了之前的shell控制脚本，我们就可以创造一个可以编程的时间继电器。
+
+
+````
+#创造一个时间触发脚本
+contron -e
+
+#第一次运行直接回车确定，默认用nano编辑脚本
+
+````
+
+![](cron.png)
+
+```
+#增加的这2行脚本解释一下：
+
+# 19:17 分运行/home/pi/rpi_isolated_relay_hat/time_relay/Relay.sh ， 把CH2继电器打开
+17  19 * * * /home/pi/rpi_isolated_relay_hat/time_relay/Relay.sh CH2 ON
+
+
+# 19:20 分运行/home/pi/rpi_isolated_relay_hat/time_relay/Relay.sh ， 把CH2继电器关闭
+20  19 * * * /home/pi/rpi_isolated_relay_hat/time_relay/Relay.sh CH2 OFF
+```
+
 
