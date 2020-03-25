@@ -177,6 +177,10 @@ sudo python main.py
 
 在谷歌浏览器（其他浏览器可能不兼容）地址栏内输入树莓派 ip 地址，端口号 8000
 
+![](./python_web.png)
+
+
+
 
 ### 制作时间继电器（基于cron和shell脚本）
 
@@ -191,7 +195,7 @@ contron -e
 
 ````
 
-![](cron.png)
+![](./cron.png)
 
 ```
 #增加的这2行脚本解释一下：
