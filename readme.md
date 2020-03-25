@@ -35,7 +35,7 @@ http://mirrors.aliyun.com/raspbian/raspbian/
 sudo apt-get update
 ```
 改成如下：
-![](change_source.png)
+![](./change_source.png)
 
 
 ### bcm2835库的安装
@@ -104,4 +104,63 @@ sudo ./Relay.sh CH1 ON
 sudo ./Relay.sh CH2 ON
 sudo ./Relay.sh CH3 OFF
 ```
+
+预期结果：继电器通道 1 的 LED 被点亮，同时听到继电器接合的声音。命令中后面两个参数可改变，例如运行如下命令分别为继电器 2 接合，继电器 3 断开。
+
+
+### BCM2835程序
+进入 Linux 终端，在终端执行以下命令：
+
+```
+cd bcm2835
+
+make
+
+sudo ./Relay_Module
+```
+
+预期结果：可以看到 3 个 LED 依次点亮，继电器依次在常开触点和常闭触点之间来回切换。同时终端会显示目前继电器在哪个触点。
+
+### wiringPi程序
+进入 Linux 终端，在终端执行以下命令：
+
+```
+cd wiringPi
+
+make
+
+sudo ./Relay_Module
+```
+
+预期结果：可以看到 3 个 LED 依次点亮，继电器依次在常开触点和常闭触点之间来回切换。同时终端会显示目前继电器在哪个触点。
+
+
+
+### python程序
+
+进入 Linux 终端，在终端执行以下命令：
+
+```
+cd python
+sudo python Relay_Module.py
+```
+
+预期结果：可以看到 3 个 LED 依次点亮，继电器依次在常开触点和常闭触点之间来回切换。同时终端会显示目前继电器在哪个触点。
+
+
+### 网页控制
+
+本例程的网页控制是基于 python Web 框架来控制继电器的。
+进入 Linux 终端，在终端执行以下命令：
+
+```
+sudo apt-get install python-bottle
+
+cd python-bottle
+
+sudo python main.py
+
+```
+
+在谷歌浏览器（其他浏览器可能不兼容）地址栏内输入树莓派 ip 地址，端口号 8000
 
