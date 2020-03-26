@@ -59,4 +59,4 @@ sudo cp /home/pi/rpi_isolated_relay_hat/php/index.php  /var/www/html/
 ![](./web.png)
 
 
-**也可以在同一个局域网内，用手机浏览器访问树莓派的IP地址，从而在实现手机控制继电器。**
+**也可以在同一个局域网内，用手机浏览器访问树莓派的IP地址，从而实现手机控制继电器的目的。**

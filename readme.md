@@ -197,12 +197,10 @@ linux的crontab是用来定时运行某个程序的。有了之前的shell控制
 
 ```
 # 关于脚本的解释
-# 11点46分运行/home/pi/rpi_isolated_relay_hat/time_relay/Relay.sh ， 把CH2继电器打开
-46  11 * * * sudo /home/pi/rpi_isolated_relay_hat/time_relay/Relay.sh CH2 ON
+# 15点35分运行 /home/pi/rpi_isolated_relay_hat/time_relay/Relay.sh ， 把CH2继电器打开
 
+# 15点36分运行 /home/pi/rpi_isolated_relay_hat/time_relay/Relay.sh ， 把CH2继电器关闭
 
-# 11点50 分运行/home/pi/rpi_isolated_relay_hat/time_relay/Relay.sh ， 把CH2继电器关闭
-11  50 * * * sudo /home/pi/rpi_isolated_relay_hat/time_relay/Relay.sh CH2 OFF
 ```
 
 一般我们只需要更改触发的时间，然后更改继电器的通道，再更改ON/OFF即可
@@ -215,9 +213,7 @@ linux的crontab是用来定时运行某个程序的。有了之前的shell控制
 crontab -l
 
 # 加载脚本
-cd /home/pi/rpi_isolated_relay_hat/time_relay
-
-crontab time.txt
+crontab /home/pi/rpi_isolated_relay_hat/time_relay/time.txt
 
 # 再次查看下是否成功
 crontab -l

@@ -25,8 +25,8 @@
 # 
 # m h  dom mon dow   command
 
-46  11 * * * sudo /home/pi/rpi_isolated_relay_hat/time_relay/Relay.sh CH2 ON
-11  50 * * * sudo /home/pi/rpi_isolated_relay_hat/time_relay/Relay.sh CH2 OFF
+35  15 * * * sudo /home/pi/rpi_isolated_relay_hat/time_relay/Relay.sh CH2 ON
+36  15 * * * sudo /home/pi/rpi_isolated_relay_hat/time_relay/Relay.sh CH2 OFF
 
 
 
