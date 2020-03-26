@@ -161,7 +161,7 @@ sudo python Relay_Module.py
 预期结果：可以看到 3 个 LED 依次点亮，继电器依次在常开触点和常闭触点之间来回切换。同时终端会显示目前继电器在哪个触点。
 
 
-### 网页控制(基于python-bottle库)
+### 网页控制方式1(基于python-bottle库)
 
 本例程的网页控制是基于 python Web 框架来控制继电器的。
 进入 Linux 终端，在终端执行以下命令：
@@ -180,32 +180,62 @@ sudo python main.py
 ![](./python_web.png)
 
 
+### 网页控制方式2（基于apache+PHP的控制方式）
+
+本节教程和php代码在 **rpi_isolated_relay_hat/php/** 文件夹中。
 
 
 ### 制作时间继电器（基于cron和shell脚本）
 
 linux的crontab是用来定时运行某个程序的。有了之前的shell控制脚本，我们就可以创造一个可以编程的时间继电器。
 
+在/home/pi/rpi_isolated_relay_hat/time_relay文件夹下面有触发脚本。
 
-````
-#创造一个时间触发脚本
-contron -e
+一、首先修改脚本
 
-#第一次运行直接回车确定，默认用nano编辑脚本
-
-````
-
-![](./cron.png)
+![](./timer.png)
 
 ```
-#增加的这2行脚本解释一下：
+# 关于脚本的解释
+# 11点46分运行/home/pi/rpi_isolated_relay_hat/time_relay/Relay.sh ， 把CH2继电器打开
+46  11 * * * sudo /home/pi/rpi_isolated_relay_hat/time_relay/Relay.sh CH2 ON
 
-# 19:17 分运行/home/pi/rpi_isolated_relay_hat/time_relay/Relay.sh ， 把CH2继电器打开
-17  19 * * * /home/pi/rpi_isolated_relay_hat/time_relay/Relay.sh CH2 ON
 
-
-# 19:20 分运行/home/pi/rpi_isolated_relay_hat/time_relay/Relay.sh ， 把CH2继电器关闭
-20  19 * * * /home/pi/rpi_isolated_relay_hat/time_relay/Relay.sh CH2 OFF
+# 11点50 分运行/home/pi/rpi_isolated_relay_hat/time_relay/Relay.sh ， 把CH2继电器关闭
+11  50 * * * sudo /home/pi/rpi_isolated_relay_hat/time_relay/Relay.sh CH2 OFF
 ```
+
+一般我们只需要更改触发的时间，然后更改继电器的通道，再更改ON/OFF即可
+
+
+二、加载和运行脚本
+
+```
+# 查看一下目前系统里的脚本
+crontab -l
+
+# 加载脚本
+cd /home/pi/rpi_isolated_relay_hat/time_relay
+
+crontab time.txt
+
+# 再次查看下是否成功
+crontab -l
+
+# 可以设置一点点时间，等待实验结果
+
+```
+
+三、卸载脚本
+
+卸载脚本，让时间继电器的功能取消。
+
+```
+crontab -r
+
+```
+
+
+
 
 
