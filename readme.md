@@ -222,7 +222,7 @@ sudo python main.py
 
 在谷歌浏览器（其他浏览器可能不兼容）地址栏内输入树莓派 ip 地址，端口号 8000
 
-![](./python_web.png)
+![](../master/docs/python_web.png)
 
 
 
@@ -241,7 +241,7 @@ linux的crontab是用来定时运行某个程序的。有了之前的shell控制
 
 一、首先修改脚本
 
-![](./timer.png)
+![](../master/docs/timer.png)
 
 ```
 # 关于脚本的解释
@@ -283,4 +283,4 @@ crontab -r
 
 ## 机械尺寸图
 
-![size](./size.jpg)
+![size](../master/docs/size.jpg)
