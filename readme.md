@@ -39,7 +39,7 @@ CH3  |  40|  P29|  21
 
 ## 硬件接线图
 
-![wire](./wire.jpg)
+![wire](../master/doc/wire.jpg)
 
 
 
