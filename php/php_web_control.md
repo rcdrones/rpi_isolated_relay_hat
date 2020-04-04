@@ -60,3 +60,8 @@ sudo cp /home/pi/rpi_isolated_relay_hat/php/index.php  /var/www/html/
 
 
 **也可以在同一个局域网内，用手机浏览器访问树莓派的IP地址，从而实现手机控制继电器的目的。**
+
+
+#### 扩展阅读
+
+如何在外网访问树莓派:https://www.zhihu.com/question/42433730
