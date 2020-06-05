@@ -5,12 +5,12 @@
 
 #### 产品特点：
 
-* 基于Raspberry Pi 40pin GPIO接口，兼容 Pi4B、Pi3B+、Pi3B、Pi3A+以及Pi2和PiB+主板。
-* 采用3路优质继电器，既能控制交流，也能控制直流。负载能力：交流或直流：5A。触点寿命长达10万次以上。
+* 基于Raspberry Pi 40pin GPIO接口，兼容 Pi4B、Pi3、Pi0/w 等主板。
+* 采用3路优质继电器，既能控制交流，也能控制直流。常开开关切换能力：10A（交流或直流）。触点寿命长达10万次以上。
 * 采取双隔离电路方案：树莓派电源隔离和控制信号光藕隔离。让Pi完全隔离在高压电路以外，避免高压电路切换干扰树莓派的运行。
-* 带继电器指示灯，方便查看每路继电器的工作状态。
-* 带继电器选择跳线帽，方便切换树莓派其他引脚进行控制。
-* 可自由设定继电器开启时间和关闭时刻。提供制作可编程时间继电器的配套资料。
+* 带继电器指示灯，方便查看每路继电器的工作状态。板载继电器选择跳线帽，方便切换树莓派其他引脚进行控制。
+* 提供在IOS系统上，通过Homebridge控制Siri，用于语音控制继电器的玩法。
+* 可自由设定继电器开启时间和关闭时刻，提供制作可编程时间继电器的配套资料。
 * 提供完善的配套软件（包括python、wiringPi、PHP web控制、shell、和bcm2835等控制源代码）
 
 
@@ -22,8 +22,8 @@
 扩展板供电电源  |  5VDC    
 树莓派控制方式 | IO口电平控制
 继电器控制电压 | 交流、直流均可
-继电器最大切换电压 | 277VAC / 30VDC
-继电器控制电流  |  5A（交流或直流）
+继电器最大切换电压 | 250VAC / 28VDC 
+继电器控制电流  | 常开触点：10A（交流或直流） /   常闭触点：5A（交流或直流） 
 继电器触点寿命 | 10万次以上 
 
 
@@ -39,7 +39,7 @@ CH3  |  40|  P29|  21
 
 ## 硬件接线图
 
-![wire](../master/docs/wire.jpg)
+![wire](wire.jpg)
 
 
 
@@ -54,7 +54,7 @@ CH3  |  40|  P29|  21
 * 制作可编程的时间继电器
 
 
-为此我们需要先在raspbian系统上搭建相应的开发环境，才能进行应用程序的开发。
+为此我们需要先在raspbian系统上**搭建相应的开发环境**，才能进行应用程序的开发。
 
 
 
@@ -114,20 +114,9 @@ sudo pip install RPi.GPIO
 
 ### 下载解压软件包
 
-从github下载代码库：
 
-```
-cd /home/pi
 
-sudo git clone https://github.com/rcdrones/rpi_isolated_relay_hat.git
-
-sudo chmod 777 -R rpi_isolated_relay_hat
-
-cd rpi_isolated_relay_hat
-
-```
-
-或者从网盘下载本资料包（rpi_isolated_relay_hat.zip）,放到/home/pi目录下：
+从网盘下载资料包**rpi_isolated_relay_hat.zip**,放到/home/pi目录下：
 
 ```
 cd /home/pi
@@ -222,7 +211,7 @@ sudo python main.py
 
 在谷歌浏览器（其他浏览器可能不兼容）地址栏内输入树莓派 ip 地址，端口号 8000
 
-![](../master/docs/python_web.png)
+![python_web](python_web.png)
 
 
 
@@ -241,7 +230,7 @@ linux的crontab是用来定时运行某个程序的。有了之前的shell控制
 
 一、首先修改脚本
 
-![](../master/docs/timer.png)
+![](timer.png)
 
 ```
 # 关于脚本的解释
@@ -283,4 +272,4 @@ crontab -r
 
 ## 机械尺寸图
 
-![size](../master/docs/size.jpg)
+![size](size.jpg)
